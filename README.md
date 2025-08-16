@@ -2,6 +2,7 @@
 * Frontend
 * Backend
 * Database
+* NGINX as web server
 
 
 ## 1. Create solution and projects
@@ -32,3 +33,24 @@ Run API
 ```
 $dotnet run --project api
 ```
+
+## 2. Working with Docker
+
+API
+```
+$docker compose build api
+$docker compose up -d api
+$docker compose ps
+```
+
+Web
+```
+$docker compose build web
+$docker compose up -d web
+$docker compose ps
+```
+
+## 3. Workshop
+* Create a docker-compose.yml
+* Working with NGINX as web server
+* Manage [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS)
