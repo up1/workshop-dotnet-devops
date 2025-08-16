@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Weather Forecast";
+}
+@model object
+
+<div class="text-center">
+    <h1 class="display-4">Weather Forecast</h1>
+    <p>@ViewData["Message"]</p>
+    
+    @if (ViewData["Forecast"] is List<web.Models.WeatherForecast> forecasts && forecasts.Any())
+    {
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Temperature (°C)</th>
+                            <th>Temperature (°F)</th>
+                            <th>Summary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var forecast in forecasts)
+                        {
+                            <tr>
+                                <td>@forecast.Date</td>
+                                <td>@forecast.TemperatureC</td>
+                                <td>@forecast.TemperatureF</td>
+                                <td>@forecast.Summary</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            No weather forecast data available.
+        </div>
+    }
+</div>
