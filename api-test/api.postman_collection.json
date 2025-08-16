@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "3e86b61e-a6dc-4ed8-a7f8-f4c3a608de12",
+		"name": "api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "1453931",
+		"_collection_link": "https://red-firefly-245852.postman.co/workspace/Performance-testing~0257dab2-3bfb-4fd4-b8f1-3f30c77a4e83/collection/1453931-3e86b61e-a6dc-4ed8-a7f8-f4c3a608de12?action=share&source=collection_link&creator=1453931"
+	},
+	"item": [
+		{
+			"name": "Get-weather",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const response = pm.response.json();",
+							"",
+							"pm.test(\"Response matches JSON schema\", function () {",
+							"    const schema = {",
+							"        type: \"array\",",
+							"        items: {",
+							"            type: \"object\",",
+							"            properties: {",
+							"                date: { type: \"string\" },",
+							"                temperatureC: { type: \"integer\" },",
+							"                summary: { type: \"string\" },",
+							"                temperatureF: { type: \"integer\" }",
+							"            },",
+							"            required: [\"date\", \"temperatureC\", \"summary\", \"temperatureF\"]",
+							"        }",
+							"    };",
+							"",
+							"    const Ajv = require(\"ajv\");",
+							"    const ajv = new Ajv();",
+							"    const validate = ajv.compile(schema);",
+							"    const valid = validate(response);",
+							"    ",
+							"    pm.expect(valid).to.be.true;",
+							"    if (!valid) {",
+							"        console.log(validate.errors);",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://api:8080/weatherforecast"
+			},
+			"response": []
+		}
+	]
+}
