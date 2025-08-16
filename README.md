@@ -22,3 +22,13 @@ Build and Publish
 $dotnet restore
 $dotnet publish
 ```
+
+Run web
+```
+$dotnet run --project web
+```
+
+Run API
+```
+$dotnet run --project api
+```
