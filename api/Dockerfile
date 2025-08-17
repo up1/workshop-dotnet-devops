@@ -2,6 +2,7 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
+RUN apt update && apt install -y curl
 EXPOSE 8080
 EXPOSE 443
 

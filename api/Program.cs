@@ -36,6 +36,14 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
+// Add health check endpoint
+app.MapGet("/health", () => Results.Ok("Healthy"))
+    .WithName("HealthCheck")
+    .WithTags("Health");
+
+// Enable CORS globally
+app.UseCors("AllowAllOrigins");
+
 app.MapGet("/weatherforecast", () =>
 {
     var forecast =  Enumerable.Range(1, 5).Select(index =>
