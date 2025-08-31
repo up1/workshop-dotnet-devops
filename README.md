@@ -1,4 +1,4 @@
-# Workshop with .NET 9
+# Workshop with .NET 9 20250831
 * Frontend
 * Backend
 * Database
